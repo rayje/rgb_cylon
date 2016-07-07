@@ -1,7 +1,5 @@
 # Name: Makefile
-# Author: <insert your name here>
-# Copyright: <insert your copyright message here>
-# License: <insert your license reference here>
+# Author: rayje
 
 # DEVICE ....... The AVR device you compile for
 # CLOCK ........ Target AVR clock rate in Hertz
@@ -14,10 +12,8 @@
 
 DEVICE     = attiny85
 CLOCK      = 8000000
-# PROGRAMMER = -c arduino -P /dev/tty.usb* -b 19200 
 PROGRAMMER = -c usbtiny -b 19200 
 OBJECTS    = main.o
-# FUSES      = -U lfuse:w:0x64:m -U hfuse:w:0xdd:m -U efuse:w:0xff:m
 FUSES      = -U lfuse:w:0x62:m -U hfuse:w:0xdf:m -U efuse:w:0xff:m
 
 ######################################################################
