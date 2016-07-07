@@ -1,13 +1,12 @@
 #include <avr/io.h>
 #include <util/delay.h>
 
-#define DATA_PIN PB0      //Data pin (DS) pin location
-
-#define CLOCK_PIN PB1      //Shift Clock (SH_CP) pin location 
-#define LATCH_PIN PB2      //Store Clock (ST_CP) pin location
+#define DATA_PIN PB0     // Data pin (DS)
+#define CLOCK_PIN PB1    // Clock pin (SH_CP)
+#define LATCH_PIN PB2    // Latch pin (ST_CP)
 
 void init() {
-    //Make the Data(DS), Shift clock (SH_CP), Store Clock (ST_CP) lines output
+    // Set the Data(DS), Clock (SH_CP), Latch (ST_CP) lines as output
     DDRB|=(
         (1<<CLOCK_PIN) |
         (1<<LATCH_PIN) |
@@ -19,13 +18,13 @@ void init() {
 #define dataHigh() (PORTB |= (1<<DATA_PIN))
 #define dataLow()  (PORTB &= (~(1<<DATA_PIN)))
 
-// Sends a clock pulse on SH_CP line
+// Sends a clock pulse on Clock pin (SH_CP)
 void pulse() {
    PORTB |= (1 << CLOCK_PIN);    //HIGH
    PORTB &= (~(1 << CLOCK_PIN)); //LOW
 }
 
-// Sends a clock pulse on ST_CP line
+// Sends a clock pulse on Latch pin (ST_CP)
 void latch() {
    PORTB |= (1 << LATCH_PIN); //HIGH
    _delay_loop_1(1);
@@ -45,8 +44,8 @@ void shiftOut(uint8_t data) {
          dataLow();
       }
 
-      pulse();       //Pulse the Clock line
-      data=data>>1;  //Now bring next bit at MSB position
+      pulse();       // Pulse the Clock pin
+      data=data>>1;  // Now bring next bit at MSB position
    }
 }
 
