@@ -13,7 +13,6 @@ void init() {
         (1<<DATA_PIN));
 }
 
-
 // macros to change data (DS)lines
 #define dataHigh() (PORTB |= (1<<DATA_PIN))
 #define dataLow()  (PORTB &= (~(1<<DATA_PIN)))
@@ -32,7 +31,6 @@ void latch() {
    PORTB &= (~(1 << LATCH_PIN)); //LOW
    _delay_loop_1(1);
 }
-
 
 // write a single byte to shift register 
 void shiftOut(uint8_t data) {
